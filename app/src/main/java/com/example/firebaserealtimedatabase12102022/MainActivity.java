@@ -52,5 +52,17 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        // 3: Gửi dạng object
+        myRef.child("animal").push().setValue(new Animal("Cat", 2.5)).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
